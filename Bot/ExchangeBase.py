@@ -1,10 +1,8 @@
 from abc import abstractmethod
 
-
 class Exchange:
-        def __init__(self, api_key):
-            self.api_key = api_key
 
-        @abstractmethod
-        def get_two_min_history(self):
-            pass
+    @abstractmethod
+    def get_current_minute_candle(self, symbol):
+        """Takes keyword of cryptocurrency and returns dict of - Open, High, Low, Close values"""
+        pass
