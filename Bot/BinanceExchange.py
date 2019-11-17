@@ -13,15 +13,15 @@ class Binance(Exchange):
             self.client.get_historical_klines_generator(symbol=symbol, interval=Client.KLINE_INTERVAL_1MINUTE,
                                                         start_str="1 minute ago UTC"))
 
-        candle = {"open": float(last_minute_candle[1]),
+        return {"open": float(last_minute_candle[1]),
                 "high": float(last_minute_candle[2]),
                 "low": float(last_minute_candle[3]),
                 "close": float(last_minute_candle[4])} #close is current status - current minute is not closed yet
 
-        # Change of market from candle in %
+    def get_current_minute_change(self, symbol):
+        candle = self.get_current_minute_candle(symbol)
         change = ((100 / candle["open"]) * candle["close"]) - 100
-        candle["change"] = change #Add change value to candle dict
-        return candle
+        return change
 
     def buy_in(self):
         pass

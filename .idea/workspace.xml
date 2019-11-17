@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dd75e2f7-038b-479f-98ff-20b7450e3df3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Bot/BinanceExchange.py" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/BinanceExchange.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Bot/BotOne.py" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/BotOne.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Bot/ExchangeBase.py" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/ExchangeBase.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bot/__main__.py" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/__main__.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -191,7 +189,14 @@
       <option name="project" value="LOCAL" />
       <updated>1573928729497</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Buy in implementation removed from bot - will be used in exchange client.">
+      <created>1573983242098</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1573983242098</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -213,7 +218,8 @@
     <MESSAGE value="Basic Binance added" />
     <MESSAGE value="Basic bot added" />
     <MESSAGE value="Added implementation to find opportunity." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added implementation to find opportunity." />
+    <MESSAGE value="Buy in implementation removed from bot - will be used in exchange client." />
+    <option name="LAST_COMMIT_MESSAGE" value="Buy in implementation removed from bot - will be used in exchange client." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -20,28 +20,32 @@ class BotOne(Bot):
         self.min_opportunity = min_oppor # % difference between already pumping crypto and not yet pumping crypto
 
     def check_for_opportunities(self):
-        """Checks for opportunity to make profit - every bot has different strategy"""
+        """Checks for opportunity to make profit - every bot has different strategy
+        pump - when one crypto is above x %
+        opportunity - when pump is found and found is also crypto that isn't pumped yet - that is opportunity to buy in"""
 
-        #Get candle for each crypto
-        cryptos_candles = {}
-        for crypto_symbol in self.__list_of_cryptos:
-            cryptos_candles[crypto_symbol] = self.exchange_client.get_current_minute_candle(crypto_symbol)
+        #record changes for each crypto
+        changes = {}
+        for crypto in self.__list_of_cryptos:
+            changes[crypto] = self.exchange_client.get_current_minute_change(crypto)
 
-        #list trought all candles and look for opportunity
-        for crypto in cryptos_candles:
-            candle = cryptos_candles[crypto]
-            if candle["change"] > self.min_pump:
-                print(f"PUMP FOUND! {crypto}")
-                pump = candle["change"]
-                for crypto in cryptos_candles:
-                    candle = cryptos_candles[crypto]
-                    if (candle["change"] - pump) > self.min_opportunity:
-                        print(f"OPPORTUNITY FOUND! {crypto}")
-                    break
+        #actual checking for pump and opportunities
+        for crypto, change in changes.items(): #looking for pump
+            if change > self.min_pump:
+                print(f"Pump found! in {crypto}, change - {change}")
+
+                pump = change
+                for crypto, change in changes.items(): #looking for opportunity
+                    if (pump - change) > self.min_opportunity:
+                        print(f"Opportunity FOUND! {crypto}")
+                        self.__opportunity_found()
+                        break
                 break
-                #TODO - send SMS, BUY in, pause a scheduler
-            else:
-                print(f"Nothing interesting for this crypto - {crypto} change only {candle['change']}")
+
+        print("Nothing interesting found keep looking")
 
     def __opportunity_found(self):
         """Call when one crypto didn't pump yet - so we can buy before it pumps and sell it at top"""
+        self.scheduler.pause() #Pause scheduler for looking opportunity - we found already one
+        self.exchange_client.buy_in(self.buy_in_amount)
+        #TODO - send a SMS - via multi threading or multi processing
