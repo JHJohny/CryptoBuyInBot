@@ -11,38 +11,37 @@ Whole idea is - when bitcoin moves up, we expect all crypto moves up as well.
 class BotOne(Bot):
     __list_of_cryptos = ["BTCUSDT", "ETHUSDT", "BCHABCUSDT", "LTCUSDT", "XRPUSDT"]
 
-    def __init__(self, *, exchange_client, scheduler, buy_in_amount, list_of_cryptos=__list_of_cryptos, min_pump=7):
+    def __init__(self, *, exchange_client, scheduler, buy_in_amount, list_of_cryptos=__list_of_cryptos, min_pump=7, min_oppor=5):
         self.exchange_client = exchange_client
         self.scheduler = scheduler
         self.buy_in_amount = buy_in_amount
         self.__list_of_cryptos = list_of_cryptos
-        self.min_pump = min_pump
+        self.min_pump = min_pump # % that crypto must reach, to consider it as pump
+        self.min_opportunity = min_oppor # % difference between already pumping crypto and not yet pumping crypto
 
     def check_for_opportunities(self):
         """Checks for opportunity to make profit - every bot has different strategy"""
-
-        print("checking for opportunities")
 
         #Get candle for each crypto
         cryptos_candles = {}
         for crypto_symbol in self.__list_of_cryptos:
             cryptos_candles[crypto_symbol] = self.exchange_client.get_current_minute_candle(crypto_symbol)
 
-        #list trought all candles and opportunity
+        #list trought all candles and look for opportunity
         for crypto in cryptos_candles:
             candle = cryptos_candles[crypto]
             if candle["change"] > self.min_pump:
-                print("OPPORTUNITY to profit!")
-                #TODO - send SMS
-                self.scheduler.pause() #Pause till we will find another opportunity after we sell profit from current opportunity
-                self.buy_in(crypto, self.buy_in_amount)
+                print(f"PUMP FOUND! {crypto}")
+                pump = candle["change"]
+                for crypto in cryptos_candles:
+                    candle = cryptos_candles[crypto]
+                    if (candle["change"] - pump) > self.min_opportunity:
+                        print(f"OPPORTUNITY FOUND! {crypto}")
+                    break
+                break
+                #TODO - send SMS, BUY in, pause a scheduler
             else:
                 print(f"Nothing interesting for this crypto - {crypto} change only {candle['change']}")
 
-    def __buy_in(self, crypto, amount):
-        #TODO - implementation for binance to buy in
-        pass
-
-    def __sell_position(self):
-        #TODO - implemenation for binance to sell specific position
-        pass
+    def __opportunity_found(self):
+        """Call when one crypto didn't pump yet - so we can buy before it pumps and sell it at top"""

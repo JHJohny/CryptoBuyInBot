@@ -20,7 +20,11 @@ class Binance(Exchange):
 
         # Change of market from candle in %
         change = ((100 / candle["open"]) * candle["close"]) - 100
-
         candle["change"] = change #Add change value to candle dict
-
         return candle
+
+    def buy_in(self):
+        pass
+
+    def sell_position(self):
+        pass
