@@ -30,15 +30,34 @@ class Binance(Exchange):
         self.__wait_till_order_is_completed(order, timeout)
         order = self.client.get_order(order["orderId"]) #update order
 
-        #TODO - return dict with price, amount etc.
-        return self.__amount_after_comission(order)
+        completed_order = {
+            "symbol" : crypto,
+            "amount" : self.__amount_after_comission(order),
+            "price" : order["fills"][0]["price"] #TODO - make average of price
+        }
 
-    def set_stop_loss(self):
+        return completed_order
+
+    def set_stop_loss(self, *, crypto, amount, stop_loss_price):
+        self.client.create_order(symbol=crypto,
+                                 side="SELL",
+                                 type="STOP_LOSS",
+                                 timeInForce="GTC",
+                                 quantity=amount,
+                                 price=stop_loss_price)
+
+    def set_stop_profit(self, *, crypto, amount, profit_price):
+        self.client.create_order(symbol=crypto,
+                                 side="SELL",
+                                 type="TAKE_PROFIT",
+                                 timeInForce="GTC",
+                                 quantity=amount,
+                                 price=profit_price)
+
+    def monitor_orders(self, *args):
         pass
 
-    def set_stop_profit(self):
-        pass
-
+    #TODO - make it from order to orderId
     def __wait_till_order_is_completed(self, order, timeout): #Wait till order is completed or it's too long and cancer the order
         elapsed_time = 0
         while elapsed_time < timeout:

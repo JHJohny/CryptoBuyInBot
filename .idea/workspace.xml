@@ -5,14 +5,15 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Bot/BinanceExchange.py" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/BinanceExchange.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Bot/BotOne.py" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/BotOne.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bot/ExchangeBase.py" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/ExchangeBase.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bot/__main__.py" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/__main__.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="CryptoBuyInBot" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -204,7 +205,14 @@
       <option name="project" value="LOCAL" />
       <updated>1573986728131</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Basic buy-in logic added">
+      <created>1574060097179</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1574060097179</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -228,7 +236,8 @@
     <MESSAGE value="Added implementation to find opportunity." />
     <MESSAGE value="Buy in implementation removed from bot - will be used in exchange client." />
     <MESSAGE value="Opportunities founder edited with new exchange client implementation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Opportunities founder edited with new exchange client implementation" />
+    <MESSAGE value="Basic buy-in logic added" />
+    <option name="LAST_COMMIT_MESSAGE" value="Basic buy-in logic added" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

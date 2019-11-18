@@ -1,4 +1,5 @@
 from Bot.BotBase import Bot
+from utils.mathematics import get_x_percent_of_y
 
 """Bot One - logic
 
@@ -10,7 +11,7 @@ Whole idea is - when bitcoin moves up, we expect all crypto moves up as well.
 class BotOne(Bot):
     __list_of_cryptos = ["BTCUSDT", "ETHUSDT", "BCHABCUSDT", "LTCUSDT", "XRPUSDT"]
 
-    def __init__(self, *, exchange_client, scheduler, buy_in_sum, list_of_cryptos=__list_of_cryptos, min_pump=7, min_oppor=5):
+    def __init__(self, *, exchange_client, scheduler, buy_in_sum, list_of_cryptos=__list_of_cryptos, min_pump=4, min_oppor=3):
         self.exchange_client = exchange_client
         self.scheduler = scheduler
         self.buy_in_sum = buy_in_sum
@@ -46,7 +47,15 @@ class BotOne(Bot):
 
     def __opportunity_found(self, crypto, crypto_price):
         """Call when one crypto didn't pump yet - so we can buy before it pumps and sell it with profit"""
+
         self.scheduler.pause() #Pause scheduler for looking opportunity - we found already one
-        bought_amount = self.exchange_client.buy(int(self.buy_in_sum / crypto_price), crypto)
+        completed_order = self.exchange_client.buy(int(self.buy_in_sum / crypto_price), crypto)
+        stop_loss_order = self.exchange_client.set_stop_loss(symbol=completed_order["symbol"],
+                                                             amount=completed_order["amount"],
+                                                             stop_loss_price=get_x_percent_of_y(x=97, y=completed_order["price"]))
+
+        stop_profit_order = self.exchange_client.set_stop_profit(symbol=completed_order["symbol"],
+                                                                 amount=completed_order["amount"],
+                                                                 stop_loss_price=get_x_percent_of_y(x=103, y=completed_order["price"]))
 
         #TODO - send a SMS - via multi threading or multi processing
