@@ -1,5 +1,7 @@
 from Bot.ExchangeBase import Exchange
+from binance.enums import *
 from binance.client import Client
+import time
 
 class Binance(Exchange):
     def __init__(self, api_key, api_secret):
@@ -13,18 +15,49 @@ class Binance(Exchange):
             self.client.get_historical_klines_generator(symbol=symbol, interval=Client.KLINE_INTERVAL_1MINUTE,
                                                         start_str="1 minute ago UTC"))
 
-        return {"open": float(last_minute_candle[1]),
+        candle = {"open": float(last_minute_candle[1]),
                 "high": float(last_minute_candle[2]),
                 "low": float(last_minute_candle[3]),
                 "close": float(last_minute_candle[4])} #close is current status - current minute is not closed yet
 
-    def get_current_minute_change(self, symbol):
-        candle = self.get_current_minute_candle(symbol)
         change = ((100 / candle["open"]) * candle["close"]) - 100
-        return change
+        candle["change"] = change
 
-    def buy_in(self):
+        return candle
+
+    def buy(self, amount, crypto, timeout=10):
+        order = self.client.order_market_buy(symbol=crypto, quantity=amount)
+        self.__wait_till_order_is_completed(order, timeout)
+        order = self.client.get_order(order["orderId"]) #update order
+
+        #TODO - return dict with price, amount etc.
+        return self.__amount_after_comission(order)
+
+    def set_stop_loss(self):
         pass
 
-    def sell_position(self):
+    def set_stop_profit(self):
         pass
+
+    def __wait_till_order_is_completed(self, order, timeout): #Wait till order is completed or it's too long and cancer the order
+        elapsed_time = 0
+        while elapsed_time < timeout:
+            if order["status"] != "FILLED":
+                elapsed_time += 1
+                time.sleep(1)
+                order = self.client.get_order(orderId=order["id"])  # Update order
+            else:
+                return
+        else:
+            self.client.cancel_order(symbol=order["symbol"], orderId=order["orderId"])
+            return
+
+    def __amount_after_comission(self, order):  # Will calculate final bought amount - comissions removed
+        amount = 0
+        comissions = 0
+        for fill in order["fills"]:
+            amount += float(fill["qty"])
+            comissions += float(fill["commission"])
+
+        return amount - comissions
+

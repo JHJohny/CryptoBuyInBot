@@ -2,21 +2,19 @@ from abc import ABC, abstractmethod
 
 class Exchange(ABC):
 
-    # @abstractmethod
-    # def get_current_minute_candle(self, symbol):
-    #     """Takes keyword of cryptocurrency and returns dict of - Open, High, Low, Close values"""
-    #     pass
-
     @abstractmethod
-    def get_current_minute_change(self, symbol):
+    def get_current_minute_candle(self, symbol):
+        """Takes keyword of cryptocurrency and returns dict of - Open, High, Low, Close values"""
         pass
 
     @abstractmethod
-    def buy_in(self):
+    def buy(self):
         pass
 
     @abstractmethod
-    def sell_position(self):
+    def set_stop_loss(self):
         pass
 
-    #TODO - add abtract function to set autosell
+    @abstractmethod
+    def set_stop_profit(self):
+        pass
