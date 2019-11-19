@@ -212,7 +212,21 @@
       <option name="project" value="LOCAL" />
       <updated>1574060097179</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Stop loss and stop profit added">
+      <created>1574104175125</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1574104175125</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Basic percentage utility added">
+      <created>1574104192056</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1574104192056</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -237,7 +251,9 @@
     <MESSAGE value="Buy in implementation removed from bot - will be used in exchange client." />
     <MESSAGE value="Opportunities founder edited with new exchange client implementation" />
     <MESSAGE value="Basic buy-in logic added" />
-    <option name="LAST_COMMIT_MESSAGE" value="Basic buy-in logic added" />
+    <MESSAGE value="Stop loss and stop profit added" />
+    <MESSAGE value="Basic percentage utility added" />
+    <option name="LAST_COMMIT_MESSAGE" value="Basic percentage utility added" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

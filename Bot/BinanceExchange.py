@@ -27,9 +27,9 @@ class Binance(Exchange):
 
     def buy(self, amount, crypto, timeout=10):
         order = self.client.order_market_buy(symbol=crypto, quantity=amount)
-        self.__wait_till_order_is_completed(order, timeout)
-        order = self.client.get_order(order["orderId"]) #update order
+        order = self.wait_till_order_is_filled(order["orderId"])
 
+        #Nah block below looks weird, think about refactoring
         completed_order = {
             "symbol" : crypto,
             "amount" : self.__amount_after_comission(order),
@@ -39,37 +39,41 @@ class Binance(Exchange):
         return completed_order
 
     def set_stop_loss(self, *, crypto, amount, stop_loss_price):
-        self.client.create_order(symbol=crypto,
+        order = self.client.create_order(symbol=crypto,
                                  side="SELL",
                                  type="STOP_LOSS",
                                  timeInForce="GTC",
                                  quantity=amount,
                                  price=stop_loss_price)
+        return order
 
     def set_stop_profit(self, *, crypto, amount, profit_price):
-        self.client.create_order(symbol=crypto,
+        order = self.client.create_order(symbol=crypto,
                                  side="SELL",
                                  type="TAKE_PROFIT",
                                  timeInForce="GTC",
                                  quantity=amount,
                                  price=profit_price)
 
-    def monitor_orders(self, *args):
-        pass
+        return order
 
-    #TODO - make it from order to orderId
-    def __wait_till_order_is_completed(self, order, timeout): #Wait till order is completed or it's too long and cancer the order
+    def wait_till_order_is_filled(self, timeout=15, *orderIds):
+        """Wait till order is completed or timeouted - if it's timeouted cancel order and return order
+        If multiple orders are inserted, stop wait when first one got filled or timeouted"""
         elapsed_time = 0
         while elapsed_time < timeout:
-            if order["status"] != "FILLED":
-                elapsed_time += 1
-                time.sleep(1)
-                order = self.client.get_order(orderId=order["id"])  # Update order
-            else:
-                return
+            for orderId in orderIds:
+                order_status = self.client.get_order(orderId)["status"]
+                if order_status != "FILLED":
+                    time.sleep(0) if timeout is None else time.sleep(1), elapsed_time.__add__(1)
+                else:
+                    return self.client.get_order(orderId)
         else:
-            self.client.cancel_order(symbol=order["symbol"], orderId=order["orderId"])
-            return
+            for orderId in orderIds:
+                order = self.client.get_order(orderId)
+                self.client.cancel_order(symbol=order["symbol"], orderId=orderId)
+                order = self.client.get_order(orderId)
+                return order
 
     def __amount_after_comission(self, order):  # Will calculate final bought amount - comissions removed
         amount = 0

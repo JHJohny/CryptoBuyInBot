@@ -58,4 +58,6 @@ class BotOne(Bot):
                                                                  amount=completed_order["amount"],
                                                                  stop_loss_price=get_x_percent_of_y(x=103, y=completed_order["price"]))
 
+        filled_order = self.exchange_client.wait_till_order_is_filled(stop_loss_order["orderId"], stop_profit_order["orderId"])
+
         #TODO - send a SMS - via multi threading or multi processing
