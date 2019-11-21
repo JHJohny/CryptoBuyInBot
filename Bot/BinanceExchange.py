@@ -25,7 +25,7 @@ class Binance(Exchange):
 
         return candle
 
-    def buy(self, amount, crypto, timeout=10):
+    def create_buy_order(self, amount, crypto, timeout=10):
         order = self.client.order_market_buy(symbol=crypto, quantity=amount)
         order = self.wait_till_order_is_filled(order["orderId"])
 

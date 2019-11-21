@@ -50,14 +50,14 @@ class BotOne(Bot):
         """Call when one crypto didn't pump yet - so we can buy before it pumps and sell it with profit"""
 
         self.scheduler.pause() #Pause scheduler for looking opportunity - we found already one
-        completed_order = self.exchange_client.buy(int(self.buy_in_sum / crypto_price), crypto)
-        stop_loss_order = self.exchange_client.set_stop_loss(symbol=completed_order["symbol"],
-                                                             amount=completed_order["amount"],
-                                                             stop_loss_price=get_x_percent_of_y(x=97, y=completed_order["price"]))
+        buy_order = self.exchange_client.create_buy_order(int(self.buy_in_sum / crypto_price), crypto)
+        stop_loss_order = self.exchange_client.set_stop_loss(symbol=buy_order["symbol"],
+                                                             amount=buy_order["amount"],
+                                                             stop_loss_price=get_x_percent_of_y(x=97, y=buy_order["price"]))
 
-        stop_profit_order = self.exchange_client.set_stop_profit(symbol=completed_order["symbol"],
-                                                                 amount=completed_order["amount"],
-                                                                 stop_loss_price=get_x_percent_of_y(x=103, y=completed_order["price"]))
+        stop_profit_order = self.exchange_client.set_stop_profit(symbol=buy_order["symbol"],
+                                                                 amount=buy_order["amount"],
+                                                                 stop_loss_price=get_x_percent_of_y(x=103, y=buy_order["price"]))
 
         filled_order = self.exchange_client.wait_till_order_is_filled(stop_loss_order["orderId"], stop_profit_order["orderId"], timeout=None)
         print("ORDER COMPLETED - ", filled_order)

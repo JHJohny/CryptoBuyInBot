@@ -8,7 +8,7 @@ class Exchange(ABC):
         pass
 
     @abstractmethod
-    def buy(self):
+    def create_buy_order(self):
         pass
 
     @abstractmethod
