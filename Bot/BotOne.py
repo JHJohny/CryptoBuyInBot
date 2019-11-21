@@ -1,5 +1,6 @@
 from Bot.BotBase import Bot
 from utils.mathematics import get_x_percent_of_y
+import time
 
 """Bot One - logic
 
@@ -58,6 +59,9 @@ class BotOne(Bot):
                                                                  amount=completed_order["amount"],
                                                                  stop_loss_price=get_x_percent_of_y(x=103, y=completed_order["price"]))
 
-        filled_order = self.exchange_client.wait_till_order_is_filled(stop_loss_order["orderId"], stop_profit_order["orderId"])
+        filled_order = self.exchange_client.wait_till_order_is_filled(stop_loss_order["orderId"], stop_profit_order["orderId"], timeout=None)
+        print("ORDER COMPLETED - ", filled_order)
+        time.sleep(300) #Wait, market can be stable right after big pumps
+        self.scheduler.resume()
 
         #TODO - send a SMS - via multi threading or multi processing

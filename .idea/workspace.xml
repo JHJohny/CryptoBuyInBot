@@ -5,6 +5,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Bot/BinanceExchange.py" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/BinanceExchange.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Bot/BotOne.py" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/BotOne.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bot/__main__.py" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/__main__.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -226,7 +227,14 @@
       <option name="project" value="LOCAL" />
       <updated>1574104192056</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="stopp loss and stop profit logics done">
+      <created>1574145044717</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1574145044717</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -253,7 +261,8 @@
     <MESSAGE value="Basic buy-in logic added" />
     <MESSAGE value="Stop loss and stop profit added" />
     <MESSAGE value="Basic percentage utility added" />
-    <option name="LAST_COMMIT_MESSAGE" value="Basic percentage utility added" />
+    <MESSAGE value="stopp loss and stop profit logics done" />
+    <option name="LAST_COMMIT_MESSAGE" value="stopp loss and stop profit logics done" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

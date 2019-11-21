@@ -63,16 +63,16 @@ class Binance(Exchange):
         elapsed_time = 0
         while elapsed_time < timeout:
             for orderId in orderIds:
-                order_status = self.client.get_order(orderId)["status"]
+                order_status = self.client.get_order(orderId=orderId)["status"]
                 if order_status != "FILLED":
                     time.sleep(0) if timeout is None else time.sleep(1), elapsed_time.__add__(1)
                 else:
-                    return self.client.get_order(orderId)
+                    return self.client.get_order(orderId=orderId)
         else:
             for orderId in orderIds:
-                order = self.client.get_order(orderId)
+                order = self.client.get_order(orderId=orderId)
                 self.client.cancel_order(symbol=order["symbol"], orderId=orderId)
-                order = self.client.get_order(orderId)
+                order = self.client.get_order(orderId=orderId)
                 return order
 
     def __amount_after_comission(self, order):  # Will calculate final bought amount - comissions removed
