@@ -7,7 +7,7 @@ schedule = BlockingScheduler()
 
 binance_client = Binance(API.BINANCE_API_KEY, API.BINANCE_API_SECRET)
 
-bot_one = BotOne(exchange_client=binance_client, scheduler=schedule, buy_in_sum=40)
+bot_one = BotOne(exchange_client=binance_client, buy_in_sum=40)
 
 schedule.add_job(bot_one.check_for_opportunities, "interval", seconds=35)
 schedule.start()

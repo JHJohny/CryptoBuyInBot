@@ -3,7 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="dd75e2f7-038b-479f-98ff-20b7450e3df3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bot/StartMenu.py" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/menu/StartMenu.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bot/BotOne.py" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/BotOne.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bot/__main__.py" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/__main__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bot/menu/ExchangesMenu.py" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/menu/ExchangesMenu.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bot/menu/StartMenu.py" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/menu/StartMenu.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -49,27 +52,6 @@
     </option>
   </component>
   <component name="RunManager" selected="Python.StartMenu">
-    <configuration name="BinanceAPI" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="CryptoBuyInBot" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ExchangeAPITest" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ExchangeAPITest/BinanceAPI.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="Bot.pt" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="CryptoBuyInBot" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -133,6 +115,27 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="TestSomething" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="CryptoBuyInBot" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Bot" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Bot/TestSomething.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="__main__" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="CryptoBuyInBot" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -157,10 +160,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.StartMenu" />
+        <item itemvalue="Python.TestSomething" />
         <item itemvalue="Python.__main__" />
         <item itemvalue="Python.Schedulers" />
         <item itemvalue="Python.Bot.pt" />
-        <item itemvalue="Python.BinanceAPI" />
       </list>
     </recent_temporary>
   </component>
@@ -266,7 +269,21 @@
       <option name="project" value="LOCAL" />
       <updated>1574406259460</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Commit">
+      <created>1574448836084</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1574448836084</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Scheduler removed">
+      <created>1574495462870</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1574495462870</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -295,7 +312,9 @@
     <MESSAGE value="Basic percentage utility added" />
     <MESSAGE value="stopp loss and stop profit logics done" />
     <MESSAGE value="Menu added, step one completed" />
-    <option name="LAST_COMMIT_MESSAGE" value="Menu added, step one completed" />
+    <MESSAGE value="Commit" />
+    <MESSAGE value="Scheduler removed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Scheduler removed" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
