@@ -12,13 +12,13 @@ Whole idea is - when bitcoin moves up, we expect all crypto moves up as well.
 class BotOne(Bot):
     __list_of_cryptos = ["BTCUSDT", "ETHUSDT", "BCHABCUSDT", "LTCUSDT", "XRPUSDT"]
 
-    def __init__(self, *, exchange_client, scheduler, buy_in_sum, list_of_cryptos=__list_of_cryptos, min_pump=4, min_oppor=3):
+    def __init__(self, *, exchange_client, buy_in_sum, list_of_cryptos=__list_of_cryptos, min_pump=4, min_oppor=3, check_interval=30):
         self.exchange_client = exchange_client
-        self.scheduler = scheduler
         self.buy_in_sum = buy_in_sum
         self.__list_of_cryptos = list_of_cryptos
         self.min_pump = min_pump # % that crypto must reach, to consider it as pump
         self.min_opportunity = min_oppor # % difference between already pumping crypto and not yet pumping crypto
+        self.check_interval = check_interval
 
     def check_for_opportunities(self):
         """Checks for opportunity to make profit - every bot has different strategy
@@ -45,11 +45,16 @@ class BotOne(Bot):
             else:
                 print(f"Nothing special found in {crypto} , change only {candle['change']}")
         print(f"Not opportunities found")
-
+        
+    #TODO - do it event based, if more functions will be added to start
+    def start(self):
+        self.check_for_opportunities()
+        time.sleep(self.check_interval) #TODO - test if it's worth to import asyncio and do it with async
+        self.start()
+        
     def __opportunity_found(self, crypto, crypto_price):
         """Call when one crypto didn't pump yet - so we can buy before it pumps and sell it with profit"""
 
-        self.scheduler.pause() #Pause scheduler for looking opportunity - we found already one
         buy_order = self.exchange_client.create_buy_order(int(self.buy_in_sum / crypto_price), crypto)
         stop_loss_order = self.exchange_client.set_stop_loss(symbol=buy_order["symbol"],
                                                              amount=buy_order["amount"],
@@ -61,7 +66,4 @@ class BotOne(Bot):
 
         filled_order = self.exchange_client.wait_till_order_is_filled(stop_loss_order["orderId"], stop_profit_order["orderId"], timeout=None)
         print("ORDER COMPLETED - ", filled_order)
-        time.sleep(300) #Wait, market can be stable right after big pumps
-        self.scheduler.resume()
-
         #TODO - send a SMS - via multi threading or multi processing
