@@ -1,7 +1,9 @@
-from Bot.ExchangeBase import Exchange
-from binance.enums import *
-from binance.client import Client
 import time
+
+from binance.client import Client
+
+from Bot.ExchangeBase import Exchange
+
 
 class Binance(Exchange):
     def __init__(self, api_key, api_secret):
@@ -16,9 +18,9 @@ class Binance(Exchange):
                                                         start_str="1 minute ago UTC"))
 
         candle = {"open": float(last_minute_candle[1]),
-                "high": float(last_minute_candle[2]),
-                "low": float(last_minute_candle[3]),
-                "close": float(last_minute_candle[4])} #close is current status - current minute is not closed yet
+                  "high": float(last_minute_candle[2]),
+                  "low": float(last_minute_candle[3]),
+                  "close": float(last_minute_candle[4])}  # close is current status - current minute is not closed yet
 
         change = ((100 / candle["open"]) * candle["close"]) - 100
         candle["change"] = change
@@ -29,31 +31,31 @@ class Binance(Exchange):
         order = self.client.order_market_buy(symbol=crypto, quantity=amount)
         order = self.wait_till_order_is_filled(order["orderId"])
 
-        #Nah block below looks weird, think about refactoring
+        # Nah block below looks weird, think about refactoring
         completed_order = {
-            "symbol" : crypto,
-            "amount" : self.__amount_after_comission(order),
-            "price" : order["fills"][0]["price"] #TODO - make average of price
+            "symbol": crypto,
+            "amount": self.__amount_after_comission(order),
+            "price": order["fills"][0]["price"]  # TODO - make average of price
         }
 
         return completed_order
 
     def set_stop_loss(self, *, crypto, amount, stop_loss_price):
         order = self.client.create_order(symbol=crypto,
-                                 side="SELL",
-                                 type="STOP_LOSS",
-                                 timeInForce="GTC",
-                                 quantity=amount,
-                                 price=stop_loss_price)
+                                         side="SELL",
+                                         type="STOP_LOSS",
+                                         timeInForce="GTC",
+                                         quantity=amount,
+                                         price=stop_loss_price)
         return order
 
     def set_stop_profit(self, *, crypto, amount, profit_price):
         order = self.client.create_order(symbol=crypto,
-                                 side="SELL",
-                                 type="TAKE_PROFIT",
-                                 timeInForce="GTC",
-                                 quantity=amount,
-                                 price=profit_price)
+                                         side="SELL",
+                                         type="TAKE_PROFIT",
+                                         timeInForce="GTC",
+                                         quantity=amount,
+                                         price=profit_price)
 
         return order
 
@@ -83,4 +85,3 @@ class Binance(Exchange):
             comissions += float(fill["commission"])
 
         return amount - comissions
-

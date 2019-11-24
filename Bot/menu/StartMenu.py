@@ -7,11 +7,13 @@ from Bot.menu.ASCI import ASCI
 Start menu is guide for user to 'configure' bot - choose which bot user want to use, what exchange, APIs,
 how much he wants to invest"""
 
+
 def insert_fancy_lines(func):
     def insert():
         print(f"\n \n{ASCI.random_fancy_line}")
         return func()
     return insert
+
 
 @insert_fancy_lines
 def choose_exchange():
@@ -19,6 +21,7 @@ def choose_exchange():
           "1.  Binance\n"
           "2.  Comming soon\n"
           "\n")
+
     def ask_for_input():
         users_input = input("Your choice:   ")
         if users_input == "1" or users_input == "":
@@ -30,11 +33,13 @@ def choose_exchange():
 
     return ask_for_input()
 
+
 @insert_fancy_lines
 def choose_invest_amount():
     print("Invest amount\n"
           "Type how much you would like to invest\n"
           "\n")
+
     def ask_for_input():
         users_input = input("Enter amount:   ")
         if users_input.isdigit():
@@ -46,6 +51,7 @@ def choose_invest_amount():
             return ask_for_input()
 
     return ask_for_input()
+
 
 @insert_fancy_lines
 def choose_bot():
@@ -64,10 +70,12 @@ def choose_bot():
 
     return ask_for_input()
 
+
 def main():
     print(ASCI.random_logo)
     bot = choose_bot()
     bot.start()
+
 
 if __name__ == "__main__":
     main()

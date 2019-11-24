@@ -1,16 +1,21 @@
 import random
 
 """ASCI - sotred ascis for menu mostly"""
-#Have and import one python file is more simple and elegant than have json/yaml file and import whole json/yaml library + os
+
+
+# Have and import one python file is more simple and elegant than have json/yaml file and import whole json/yaml library + os
 
 
 class classproperty(property):
     def __get__(self, obj, objtype=None):
         return super(classproperty, self).__get__(objtype)
+
     def __set__(self, obj, value):
         super(classproperty, self).__set__(type(obj), value)
+
     def __delete__(self, obj):
         super(classproperty, self).__delete__(type(obj))
+
 
 class ASCI:
     asci_logo_first = """
