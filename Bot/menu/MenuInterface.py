@@ -71,11 +71,7 @@ def choose_bot():
     return ask_for_input()
 
 
-def main():
+def start_menu():
     print(ASCI.random_logo)
     bot = choose_bot()
     bot.start()
-
-
-if __name__ == "__main__":
-    main()

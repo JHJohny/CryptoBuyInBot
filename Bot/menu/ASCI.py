@@ -6,6 +6,7 @@ import random
 # Have and import one python file is more simple and elegant than have json/yaml file and import whole json/yaml library + os
 
 
+#use only as decorator, decorator to use method as property without instatiating class
 class classproperty(property):
     def __get__(self, obj, objtype=None):
         return super(classproperty, self).__get__(objtype)

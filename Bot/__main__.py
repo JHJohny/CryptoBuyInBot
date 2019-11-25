@@ -1,13 +1,11 @@
-from Bot.BotOne import BotOne
-from Bot.BinanceExchange import Binance
-from Bot.BinanceAPI import API
-from apscheduler.schedulers.blocking import BlockingScheduler
+import sys
+from Bot.menu.MenuInterface import start_menu
+from Bot.menu.CommandLineInterface import start_cli
 
-schedule = BlockingScheduler()
 
-binance_client = Binance(API.BINANCE_API_KEY, API.BINANCE_API_SECRET)
-
-bot_one = BotOne(exchange_client=binance_client, buy_in_sum=40)
-
-schedule.add_job(bot_one.check_for_opportunities, "interval", seconds=35)
-schedule.start()
+if __name__ == "__main__":
+    print("Main is running")
+    if len(sys.argv) > 1: #2 ways how to start bot
+        start_cli()
+    else:
+        start_menu()
