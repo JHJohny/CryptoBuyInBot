@@ -16,7 +16,7 @@ def block_none_or_empty_arguments(func):
     return wrapper
 
 
-def block_argument(*block_args):
+def block_argument(*blocked_args):
     """Protect whatever type of argument to overwrite default arguments in function"""
     def block_args(func):
         default_keyword = get_kwd_args(func) #Store signature keyword arguments
@@ -25,7 +25,7 @@ def block_argument(*block_args):
 
             #Check if some of inserted arguments are empty
             for key in kwargs:
-                if kwargs[key] in block_args:
+                if kwargs[key] in blocked_args:
                     if key in default_keyword:
                         kwargs[key] = default_keyword[key]
 
