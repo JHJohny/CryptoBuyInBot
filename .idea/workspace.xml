@@ -4,8 +4,6 @@
     <list default="true" id="dd75e2f7-038b-479f-98ff-20b7450e3df3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Bot/BotOne.py" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/BotOne.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bot/__main__.py" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/__main__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bot/menu/CommandLineInterface.py" beforeDir="false" afterPath="$PROJECT_DIR$/Bot/menu/CommandLineInterface.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -345,7 +343,14 @@
       <option name="project" value="LOCAL" />
       <updated>1574970534264</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Integrated command line interface">
+      <created>1574970874734</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1574970874734</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -385,7 +390,8 @@
     <MESSAGE value="Added argument decorator" />
     <MESSAGE value="Getting default keyword arguments" />
     <MESSAGE value="Fixed bug, - function had same name as position arguments dict" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed bug, - function had same name as position arguments dict" />
+    <MESSAGE value="Integrated command line interface" />
+    <option name="LAST_COMMIT_MESSAGE" value="Integrated command line interface" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

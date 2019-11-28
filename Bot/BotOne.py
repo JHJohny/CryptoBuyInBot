@@ -13,7 +13,7 @@ Whole idea is - when bitcoin moves up, we expect all crypto moves up as well.
 
 
 class BotOne(Bot):
-    __list_of_cryptos = ["BTCUSDT", "ETHUSDT", "BCHABCUSDT", "LTCUSDT", "XRPUSDT"]
+    __list_of_cryptos = ["BTCUSDT", "ETHUSDT", "BCHUSDT", "LTCUSDT", "XRPUSDT"]
 
     @block_argument("", None)  
     def __init__(self, *, exchange_client, buy_in_sum, list_of_cryptos=__list_of_cryptos, min_pump=4, min_oppor=3,
@@ -56,7 +56,7 @@ class BotOne(Bot):
         try:  # Because Binance API has troubles to request history at 58/59/60th second of minute.
             self.check_for_opportunities()
         except:
-            print("Something wrong with binacne API")
+            print(f"Something wrong with binacne API ")
 
         time.sleep(self.check_interval)  # TODO - test if it's worth to import asyncio and do it with async
         self.start()
