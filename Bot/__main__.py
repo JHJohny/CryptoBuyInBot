@@ -4,8 +4,8 @@ from Bot.menu.CommandLineInterface import start_cli
 
 
 if __name__ == "__main__":
-    print("Main is running")
-    if len(sys.argv) > 1: #2 ways how to start bot
+    # 2 ways how to start bot
+    if len(sys.argv) > 1:
         start_cli()
     else:
         start_menu()

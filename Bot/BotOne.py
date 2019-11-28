@@ -2,6 +2,7 @@ import time
 
 from Bot.BotBase import Bot
 from utils.mathematics import get_x_percent_of_y
+from utils.decorator.Decorators import block_argument
 
 """Bot One - logic
 
@@ -14,6 +15,7 @@ Whole idea is - when bitcoin moves up, we expect all crypto moves up as well.
 class BotOne(Bot):
     __list_of_cryptos = ["BTCUSDT", "ETHUSDT", "BCHABCUSDT", "LTCUSDT", "XRPUSDT"]
 
+    @block_argument("", None)  
     def __init__(self, *, exchange_client, buy_in_sum, list_of_cryptos=__list_of_cryptos, min_pump=4, min_oppor=3,
                  check_interval=10):
         self.exchange_client = exchange_client

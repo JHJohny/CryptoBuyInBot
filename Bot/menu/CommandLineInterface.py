@@ -3,7 +3,7 @@ from Bot.BotOne import BotOne
 from Bot.BinanceExchange import Binance
 
 def start_cli():
-    parser = argparse.ArgumentParser(prog="CryptoBot",
+    parser = argparse.ArgumentParser(prog="Bot",
                                      usage="%(prog)s -b BotOne -e Binance -k *YourKey -s *YourSecret -a 100 \n"
                                            "Or use non command line interface, without any parameters - $ %(prog)s",
                                      description="Crypto bot is collection of bots for trading on multiple exchanges",
@@ -22,20 +22,15 @@ def start_cli():
     #TODO - add parameter for custom cryptos
     args = parser.parse_args()
 
-    print(args.Key)
-
-#TODO - construc a bot
-
-if __name__ == "__main__":
-    start_cli()
+    _start_bot(args)
 
 
 def _start_bot(args):
-    if args.Bot == "BotOne":
+    if args.Bot == "BotOne": #For binance exchange Secret key is required, in other exchanges not
         if args.Secret == "":
             raise Exception("Missing secret argument, if you want to use Binance, "
                             "you need insert API key secret as well. use -s or --Secret argument")
         else:
             exchange = Binance(api_key=args.Key, api_secret=args.Secret)
-            bot = BotOne(exchange_client=exchange, buy_in_sum=args.Amount)
+            bot = BotOne(exchange_client=exchange, buy_in_sum=args.Amount, check_interval=args.Interval)
             bot.start()
